@@ -1,5 +1,5 @@
 <?php
-include_once "../ukljuci/konekcija.php";
+include_once "../ukljuci/konekcija.php"; 
 session_start();
 
 if (!isset($_POST['dodavanje'])) {
@@ -10,18 +10,18 @@ if (!isset($_POST['dodavanje'])) {
         header("Location: prijavljivanje.php");
         exit();
     } else {
-        if ($_SESSION['autor_uloga'] != "admin") {
-            echo "Немате приступ овој страници";
+        if ($_SESSION['autor_uloga']!="admin") {
+            echo "Немате приступ овој страници"; 
             exit();
-        } else if ($_SESSION['autor_uloga'] == "admin") {
+        } else if($_SESSION['autor_uloga']=="admin") {
             $stranica_naslov = $_POST['stranica_naslov'];
             $stranica_sadrzaj = $_POST['stranica_sadrzaj'];
-            $sql = "INSERT INTO stranica (`stranica_naslov`, `stranica_sadrzaj`) VALUES ('$stranica_naslov', '$stranica_sadrzaj');";
+            $sql = "INSERT INTO stranica (`stranica_naslov`, `stranica_sadrzaj`) VALUES ('$stranica_naslov', '$stranica_sadrzaj');"; 
             if (mysqli_query($veza, $sql)) {
-                header("Location: stranice.php?poruka=Страниша+jе+успешно+додата");
+                header("Location: stranice.php?poruka=Страница+je+успешно+додата"); 
                 exit();
             } else {
-                header("Location: stranice.php?poruka=гpeшкa");
+                header("Location: stranice.php?poruka=грешка");
                 exit();
             }
         }
